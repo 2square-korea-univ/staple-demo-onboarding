@@ -1,5 +1,5 @@
 window.STAPLE_DEMO_CONFIG = {
-  demoRpcUrl: "http://127.0.0.1:9545",
+  demoRpcUrl: "https://bulk-solutions-acc-assessment.trycloudflare.com",
   demoChainId: 5745438,
   demoNetworkName: "STAPLE Public Demo",
   demoSymbol: "ETH",
