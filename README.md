@@ -1,61 +1,24 @@
-# STAPLE Demo Onboarding
+# STAPLE Public Frontend
 
-Private onboarding surface for VC, partner, and invite-only testing on a STAPLE Tenderly Virtual Environment.
+This repository publishes the public GitHub Pages build for the STAPLE app.
 
-Korean version: [README.ko.md](README.ko.md)
+The React source of the service app lives in the private repository:
 
-This repo intentionally does not deploy contracts. The protocol, Foundry scripts, operator keys, and Tenderly Admin RPC stay in the sibling `staple2` repo. This app consumes a public manifest and exposes only the invitee-safe network data.
+- `2square-korea-univ/staple-app`
 
-## Run
+The deployed static files are copied into `site/` and served from:
 
-```bash
-npm install
-npm run dev
-```
+- https://2square-korea-univ.github.io/staple-demo-onboarding/
 
-Open the local URL printed by Vite.
+## Current Build
 
-## Repo Boundary
+- Source app: `staple-app`
+- Build command: `npx vite build --base /staple-demo-onboarding/`
+- Output copied from: `dist/public`
+- SPA fallback: `site/404.html`
+- Demo chain default: `STAPLE Public Demo`, chain ID `5745438`
 
-Keep in `staple2`:
+On-chain reads require a reachable demo RPC. Build the source app with
+`VITE_DEMO_RPC_URL` set to the public Tenderly or JSON-RPC proxy endpoint before
+copying the output here.
 
-- Solidity contracts and Foundry tests
-- deploy scripts and `cli-agent`
-- Tenderly Admin RPC workflows
-- deployer keys, faucet mutations, reset controls
-
-Keep here:
-
-- invitee onboarding UI
-- Tenderly Public RPC and public explorer links
-- contract address manifests
-- cohort-specific copy, scope, and reset policy
-
-## Generate a Cohort Manifest
-
-After deploying from `staple2`, convert its `deployments.env` into an invite-safe manifest:
-
-```bash
-npm run manifest:from-staple2 -- \
-  --source ../staple2/deployments.env \
-  --out public/deployments/vc-june.generated.json \
-  --public-rpc "$TENDERLY_PUBLIC_RPC_URL" \
-  --explorer "$TENDERLY_PUBLIC_EXPLORER_URL" \
-  --cohort "vc-june"
-```
-
-Then point the app at it:
-
-```bash
-VITE_DEFAULT_MANIFEST=/deployments/vc-june.generated.json npm run dev
-```
-
-Generated manifests are ignored by git by default. Commit only reviewed public manifests.
-
-## Invitee Safety Rule
-
-Invitees receive the frontend URL, Public RPC, public explorer, and reviewed manifest only. Never share Tenderly Admin RPC, access keys, private keys, raw faucet controls, or reset controls.
-
-## Deployment
-
-See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).

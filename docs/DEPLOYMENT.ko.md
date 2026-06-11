@@ -1,61 +1,37 @@
-# 배포
+# 배포 노트
 
-이 앱은 static Vite site입니다. Production artifact는 `dist/`입니다.
+이 저장소는 의도적으로 빌드 산출물만 담습니다. 비공개 소스 코드, 개인키, RPC
+시크릿, 원본 환경변수 파일을 복사하지 않습니다.
 
-## 로컬 Production Preview
+## 릴리스 절차
+
+1. `/Users/shlee/app/projects/staple-app`에서 비공개 앱을 빌드합니다.
+2. GitHub Pages base path를 사용합니다.
+
+   ```bash
+   npx vite build --base /staple-demo-onboarding/
+   cp dist/public/index.html dist/public/404.html
+   ```
+
+3. `dist/public/` 내용을 이 저장소의 `site/` 디렉터리로 복사합니다.
+4. `main`에 커밋하고 푸시합니다.
+5. GitHub Actions가 `site/`를 Pages에 배포합니다.
+
+## 런타임 설정
+
+현재 앱은 STAPLE 데모 체인을 기본값으로 사용합니다.
+
+- 체인 이름: `STAPLE Public Demo`
+- Chain ID: `5745438`
+- Native symbol: `ETH`
+
+공개 데모 RPC가 준비되면 비공개 소스 앱을 빌드하기 전에 아래 변수를 지정합니다.
 
 ```bash
-npm run preview:dist -- --port 4174
+VITE_DEMO_RPC_URL=https://rpc.example.invalid
+VITE_DEMO_EXPLORER_URL=https://explorer.example.invalid
+VITE_WALLETCONNECT_PROJECT_ID=...
 ```
 
-## Manifest 선택
+실제 개인키나 비공개 유료 RPC URL은 이 공개 저장소에 커밋하지 않습니다.
 
-Build 시점에 manifest path를 지정합니다.
-
-```bash
-VITE_DEFAULT_MANIFEST=/deployments/<cohort>.json npm run build
-```
-
-로컬 테스트에서는 generated manifest를 gitignore 상태로 유지할 수 있습니다.
-
-```bash
-npm run manifest:from-staple2 -- \
-  --source ../staple2/deployments.env \
-  --out public/deployments/<cohort>.generated.json \
-  --public-rpc "$TENDERLY_PUBLIC_RPC_URL" \
-  --explorer "$TENDERLY_PUBLIC_EXPLORER_URL" \
-  --cohort "<cohort>"
-```
-
-## GitHub Pages
-
-이 repo에는 `.github/workflows/deploy-pages.yml`이 포함됩니다. Repo를 GitHub에 push한 뒤:
-
-1. GitHub Pages Source를 GitHub Actions로 설정합니다.
-2. `main`에 push합니다.
-3. Workflow가 `dist/`를 build하고 publish합니다.
-
-Vite base path 기본값은 `./`이므로 GitHub Pages project subpath에서도 같은 build가 동작합니다.
-
-## Vercel
-
-Project settings:
-
-- Framework preset: Vite
-- Build command: `npm run build`
-- Output directory: `dist`
-- Environment variable: `VITE_DEFAULT_MANIFEST=/deployments/<cohort>.json`
-- Optional environment variable: `VITE_BASE_PATH=/`
-
-## Cloudflare Pages
-
-Project settings:
-
-- Build command: `npm run build`
-- Build output directory: `dist`
-- Environment variable: `VITE_DEFAULT_MANIFEST=/deployments/<cohort>.json`
-- Optional environment variable: `VITE_BASE_PATH=/`
-
-## 안전 규칙
-
-검토된 public manifest만 배포합니다. Admin RPC URL, Tenderly access key, private key, raw faucet control은 배포하지 않습니다.
