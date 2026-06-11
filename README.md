@@ -18,7 +18,11 @@ The deployed static files are copied into `site/` and served from:
 - SPA fallback: `site/404.html`
 - Demo chain default: `STAPLE Public Demo`, chain ID `5745438`
 
-On-chain reads require a reachable demo RPC. Build the source app with
-`VITE_DEMO_RPC_URL` set to the public Tenderly or JSON-RPC proxy endpoint before
-copying the output here.
+On-chain reads require a reachable demo RPC. The app loads
+`site/staple-runtime-config.js` before the bundled React app, so the RPC URL,
+chain ID, WalletConnect project ID, and deployed contract addresses can be
+changed without rebuilding the private source app.
 
+For local testing this file may point at `http://127.0.0.1:9545`. For a VC or
+invite demo, point it at an HTTPS JSON-RPC proxy such as
+`https://rpc.example.com`.

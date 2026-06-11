@@ -14,8 +14,10 @@ private keys, RPC secrets, or unredacted environment files into it.
    ```
 
 3. Copy `dist/public/` into this repository's `site/` directory.
-4. Commit and push to `main`.
-5. GitHub Actions deploys `site/` to Pages.
+4. Update `site/staple-runtime-config.js` with the active demo RPC and deployed
+   contract addresses.
+5. Commit and push to `main`.
+6. GitHub Actions deploys `site/` to Pages.
 
 ## Runtime Configuration
 
@@ -25,15 +27,24 @@ The current app defaults to the STAPLE demo chain:
 - Chain ID: `5745438`
 - Native symbol: `ETH`
 
-Set these variables in the private source app before building when a public demo
-RPC is available:
+Edit `site/staple-runtime-config.js` after each local, Mac mini, or VPS deploy.
+For local testing, use the loopback proxy:
 
-```bash
-VITE_DEMO_RPC_URL=https://rpc.example.invalid
-VITE_DEMO_EXPLORER_URL=https://explorer.example.invalid
-VITE_WALLETCONNECT_PROJECT_ID=...
+```js
+window.STAPLE_DEMO_CONFIG = {
+  demoRpcUrl: "http://127.0.0.1:9545",
+  demoChainId: 5745438
+};
+```
+
+For a public invite demo, the page is HTTPS, so the RPC must also be HTTPS:
+
+```js
+window.STAPLE_DEMO_CONFIG = {
+  demoRpcUrl: "https://rpc.example.com",
+  demoChainId: 5745438
+};
 ```
 
 Do not commit real private keys or private paid RPC URLs to this public
 repository.
-

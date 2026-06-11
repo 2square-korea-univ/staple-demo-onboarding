@@ -14,8 +14,10 @@
    ```
 
 3. `dist/public/` 내용을 이 저장소의 `site/` 디렉터리로 복사합니다.
-4. `main`에 커밋하고 푸시합니다.
-5. GitHub Actions가 `site/`를 Pages에 배포합니다.
+4. `site/staple-runtime-config.js`를 현재 데모 RPC와 배포 컨트랙트 주소로
+   갱신합니다.
+5. `main`에 커밋하고 푸시합니다.
+6. GitHub Actions가 `site/`를 Pages에 배포합니다.
 
 ## 런타임 설정
 
@@ -25,13 +27,23 @@
 - Chain ID: `5745438`
 - Native symbol: `ETH`
 
-공개 데모 RPC가 준비되면 비공개 소스 앱을 빌드하기 전에 아래 변수를 지정합니다.
+로컬, 맥미니, VPS 배포 후에는 `site/staple-runtime-config.js`를 수정합니다.
+로컬 테스트에서는 loopback proxy를 사용합니다.
 
-```bash
-VITE_DEMO_RPC_URL=https://rpc.example.invalid
-VITE_DEMO_EXPLORER_URL=https://explorer.example.invalid
-VITE_WALLETCONNECT_PROJECT_ID=...
+```js
+window.STAPLE_DEMO_CONFIG = {
+  demoRpcUrl: "http://127.0.0.1:9545",
+  demoChainId: 5745438
+};
+```
+
+공개 초대 데모에서는 GitHub Pages가 HTTPS이므로 RPC도 HTTPS여야 합니다.
+
+```js
+window.STAPLE_DEMO_CONFIG = {
+  demoRpcUrl: "https://rpc.example.com",
+  demoChainId: 5745438
+};
 ```
 
 실제 개인키나 비공개 유료 RPC URL은 이 공개 저장소에 커밋하지 않습니다.
-

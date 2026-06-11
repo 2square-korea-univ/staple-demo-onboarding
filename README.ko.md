@@ -18,7 +18,11 @@
 - SPA fallback: `site/404.html`
 - 데모 체인 기본값: `STAPLE Public Demo`, chain ID `5745438`
 
-온체인 조회에는 접근 가능한 데모 RPC가 필요합니다. 공개 Tenderly 또는 JSON-RPC
-프록시 엔드포인트를 `VITE_DEMO_RPC_URL`로 지정해 소스 앱을 빌드한 뒤, 결과물을
-이 저장소로 복사합니다.
+온체인 조회에는 접근 가능한 데모 RPC가 필요합니다. 앱은 React 번들보다 먼저
+`site/staple-runtime-config.js`를 읽습니다. 그래서 private 소스 앱을 다시 빌드하지
+않고도 RPC URL, chain ID, WalletConnect project ID, 배포 컨트랙트 주소를 바꿀 수
+있습니다.
 
+로컬 테스트에서는 이 파일이 `http://127.0.0.1:9545`를 가리켜도 됩니다. VC 또는
+초대 데모에서는 `https://rpc.example.com` 같은 HTTPS JSON-RPC proxy를 바라보게
+합니다.
