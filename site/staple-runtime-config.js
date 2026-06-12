@@ -1,6 +1,6 @@
 window.STAPLE_DEMO_CONFIG = {
   demoRpcUrl: "https://rpc.nobaprotocol.com",
-  faucetApiUrl: "https://faucet.nobaprotocol.com",
+  faucetApiUrl: "https://rpc.nobaprotocol.com/faucet",
   demoChainId: 5745438,
   demoNetworkName: "STAPLE Public Demo",
   demoSymbol: "ETH",
