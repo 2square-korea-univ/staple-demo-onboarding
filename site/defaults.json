@@ -1,0 +1,9 @@
+{
+  "defaults": {
+    "rpcUrl": "https://virtual.mainnet.rpc.tenderly.co/public-example",
+    "vault": "0xFDF7c69db5Fd6370d5BC935d6be6CdB5376F5A39",
+    "oracle": "0x95bA2074cd84ea48aAa3DC553e663d98b9a756A4",
+    "staple": "0xe26E6C5Cb47167627d6bC24705ddDc5a6ec22ACE",
+    "lens": "0x0d7022FD8086a3c8ffbe6A8Cea882DE28ed261A3"
+  }
+}

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">STAPLE risk layers</title>
+  <desc id="desc">Layered defense model for STAPLE covering conditional asset support, oracle, accounting, liquidity, strategy, swap, and governance risks.</desc>
+  <style>
+    .bg { fill: #f8fafc; }
+    .card { fill: #ffffff; stroke: #d8dee8; stroke-width: 2; }
+    .num { font: 700 22px Inter, Arial, sans-serif; fill: #ffffff; }
+    .title { font: 700 17px Inter, Arial, sans-serif; fill: #111827; }
+    .body { font: 13px Inter, Arial, sans-serif; fill: #526071; }
+  </style>
+  <rect class="bg" width="1120" height="520"/>
+  <text x="60" y="58" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#111827">Risk Is Managed in Layers</text>
+  <text x="60" y="88" font-family="Inter, Arial, sans-serif" font-size="15" fill="#5b6472">STAPLE does not claim risk disappears. It narrows where each risk can enter the system.</text>
+
+  <g transform="translate(50 135)">
+    <rect class="card" width="245" height="118" rx="14"/>
+    <circle cx="42" cy="38" r="22" fill="#1f6feb"/>
+    <text class="num" x="42" y="46" text-anchor="middle">1</text>
+    <text class="title" x="82" y="36">Asset Risk</text>
+    <text class="body" x="82" y="62">Target asset mix;</text>
+    <text class="body" x="82" y="82">conditional hedge limits.</text>
+  </g>
+
+  <g transform="translate(315 135)">
+    <rect class="card" width="245" height="118" rx="14"/>
+    <circle cx="42" cy="38" r="22" fill="#d4a017"/>
+    <text class="num" x="42" y="46" text-anchor="middle">2</text>
+    <text class="title" x="82" y="36">Oracle Risk</text>
+    <text class="body" x="82" y="62">Chainlink, TWAP, bounds,</text>
+    <text class="body" x="82" y="82">heartbeat, liquidity floors.</text>
+  </g>
+
+  <g transform="translate(580 135)">
+    <rect class="card" width="245" height="118" rx="14"/>
+    <circle cx="42" cy="38" r="22" fill="#1f9d55"/>
+    <text class="num" x="42" y="46" text-anchor="middle">3</text>
+    <text class="title" x="82" y="36">Accounting Risk</text>
+    <text class="body" x="82" y="62">Internal balances and</text>
+    <text class="body" x="82" y="82">strategy gain gates.</text>
+  </g>
+
+  <g transform="translate(845 135)">
+    <rect class="card" width="245" height="118" rx="14"/>
+    <circle cx="42" cy="38" r="22" fill="#0ea5e9"/>
+    <text class="num" x="42" y="46" text-anchor="middle">4</text>
+    <text class="title" x="82" y="36">Liquidity Risk</text>
+    <text class="body" x="82" y="62">Idle cash, redeem if enabled,</text>
+    <text class="body" x="82" y="82">partial or pending claims.</text>
+  </g>
+
+  <g transform="translate(182 310)">
+    <rect class="card" width="245" height="118" rx="14"/>
+    <circle cx="42" cy="38" r="22" fill="#f7931a"/>
+    <text class="num" x="42" y="46" text-anchor="middle">5</text>
+    <text class="title" x="82" y="36">Strategy Risk</text>
+    <text class="body" x="82" y="62">Adapter isolation, protocol</text>
+    <text class="body" x="82" y="82">pause, emergency withdraw.</text>
+  </g>
+
+  <g transform="translate(448 310)">
+    <rect class="card" width="245" height="118" rx="14"/>
+    <circle cx="42" cy="38" r="22" fill="#7c3aed"/>
+    <text class="num" x="42" y="46" text-anchor="middle">6</text>
+    <text class="title" x="82" y="36">Swap Risk</text>
+    <text class="body" x="82" y="62">Route whitelist, per-trade</text>
+    <text class="body" x="82" y="82">cap, daily cap, health gate.</text>
+  </g>
+
+  <g transform="translate(714 310)">
+    <rect class="card" width="245" height="118" rx="14"/>
+    <circle cx="42" cy="38" r="22" fill="#ef4444"/>
+    <text class="num" x="42" y="46" text-anchor="middle">7</text>
+    <text class="title" x="82" y="36">Governance Risk</text>
+    <text class="body" x="82" y="62">Timelock, role separation,</text>
+    <text class="body" x="82" y="82">launch readiness checks.</text>
+  </g>
+</svg>

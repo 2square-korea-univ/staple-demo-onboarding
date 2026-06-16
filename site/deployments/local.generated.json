@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "name": "STAPLE Private Mainnet-Mirror Demo",
+    "cohort": "local-smoke",
+    "environment": "Tenderly Virtual Environment",
+    "forkBlock": "latest-at-creation",
+    "forkedAtUtc": "2026-06-11T07:24:40.964Z",
+    "resetPolicy": "Resettable after notice for security, maintenance, or a new cohort.",
+    "operatorContact": "operator@staple.example"
+  },
+  "network": {
+    "name": "STAPLE Private Demo",
+    "chainId": 5745438,
+    "chainIdHex": "0x57AB1E",
+    "currencySymbol": "ETH",
+    "publicRpcUrl": "https://virtual.mainnet.rpc.tenderly.co/public-example",
+    "explorerUrl": "https://dashboard.tenderly.co/public/example"
+  },
+  "contracts": {
+    "core": {
+      "STAPLE": "0xe26E6C5Cb47167627d6bC24705ddDc5a6ec22ACE",
+      "VAULT": "0xFDF7c69db5Fd6370d5BC935d6be6CdB5376F5A39",
+      "ATM": "0xb2572c83406a0824B8557AAFb9FC037070d82041",
+      "ORACLE": "0x95bA2074cd84ea48aAa3DC553e663d98b9a756A4",
+      "QUEUE": "0xe0105941Ee10cF0d3200845bE1FDb206BE64685D",
+      "LENS": "0x0d7022FD8086a3c8ffbe6A8Cea882DE28ed261A3"
+    },
+    "adapters": {
+      "AAVE_ADAPTER": "0x2f81f39477FddC6192bC300ff90FCC0CCd18e625",
+      "SPARK_ADAPTER": "0x1aCE75F561362860Ce8d43E59789506D83Be34f4",
+      "COMPOUND_V3_ADAPTER": "0x7b0BB45fc4C49f30639e1105e5dD3BAB4AB9e870"
+    },
+    "operations": {
+      "SWAP_GUARD": "0xCef13B96028e4AAEa5889cD99b8740A4f48F5EA0",
+      "REBALANCER": "0x6bBBbD85d185EE396C7E9123e48b60478d2bCCF2",
+      "KEEPER_CONTRACT": "0x7a83540F537F831b8709c0E3a696bAB59ed20D12"
+    }
+  },
+  "testScope": {
+    "available": [
+      "Connect wallet to the private demo network",
+      "Inspect deployed addresses and explorer activity",
+      "Request ETH, USDC, and USDT test balances from the operator",
+      "Deposit through the STAPLE ATM flow when the cohort is funded"
+    ],
+    "operatorOnly": [
+      "Tenderly Admin RPC",
+      "Balance mutation and token faucet",
+      "Governance cutover drills",
+      "Pause, reset, and redeploy controls"
+    ]
+  },
+  "notices": [
+    "This is a forked, resettable Tenderly environment, not Ethereum mainnet.",
+    "No real assets are moved and balances may be reset between cohorts.",
+    "Use only the Public RPC in wallets and frontends."
+  ]
+}
