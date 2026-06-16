@@ -1,261 +1,37 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Staple Admin DeFi Console</title>
-    <script type="module" crossorigin src="./assets/index-BH67i9O7.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-C65Iv6V-.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>STAPLE Public Demo</title>
+    <meta name="description" content="Try STAPLE on the public demo network. Mint with test USDC, USDT, USDe, and ETH while exploring a value-accruing stablecoin design." />
+
+    <meta property="og:site_name" content="STAPLE" />
+    <meta property="og:title" content="STAPLE Public Demo" />
+    <meta property="og:description" content="Try a value-accruing stablecoin demo with test ETH, USDC, USDT, and USDe on the STAPLE public demo network." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://2square-korea-univ.github.io/staple-demo-onboarding/" />
+    <meta property="og:image" content="https://2square-korea-univ.github.io/staple-demo-onboarding/opengraph.jpg" />
+    <meta property="og:image:secure_url" content="https://2square-korea-univ.github.io/staple-demo-onboarding/opengraph.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="STAPLE Public Demo preview showing faucet assets and a reserve dashboard." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="STAPLE Public Demo" />
+    <meta name="twitter:description" content="Mint STAPLE with public demo test assets and explore smart-contract routed reserves." />
+    <meta name="twitter:image" content="https://2square-korea-univ.github.io/staple-demo-onboarding/opengraph.jpg" />
+    <meta name="twitter:image:alt" content="STAPLE Public Demo preview showing faucet assets and a reserve dashboard." />
+
+    <link rel="icon" type="image/png" href="/staple-demo-onboarding/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="/staple-demo-onboarding/staple-runtime-config.js"></script>
+    <script type="module" crossorigin src="/staple-demo-onboarding/assets/index-XI_1aWpd.js"></script>
+    <link rel="stylesheet" crossorigin href="/staple-demo-onboarding/assets/index-Bpdi0T8G.css">
   </head>
   <body>
-    <div class="bg-noise"></div>
-
-    <header class="hero">
-      <div>
-        <p class="eyebrow">Staple Protocol Operations</p>
-        <h1>Admin DeFi Console</h1>
-        <p class="subtitle">
-          컨트랙트 상태를 운영 관점에서 읽고, 즉시 조치하는 대시보드
-        </p>
-      </div>
-      <div class="wallet-box">
-        <button id="connectWalletButton" class="btn btn-solid">
-          Wallet 연결
-        </button>
-        <p id="walletStatus" class="mono">지갑 미연결</p>
-      </div>
-    </header>
-
-    <main class="layout">
-      <section class="panel config">
-        <div class="panel-head">
-          <h2>Endpoint & Contract Setup</h2>
-          <div class="button-row">
-            <button id="loadDefaultsButton" class="btn btn-soft">기본값</button>
-            <button id="refreshButton" class="btn btn-solid">새로고침</button>
-          </div>
-        </div>
-
-        <div class="form-grid">
-          <label>
-            RPC URL
-            <input id="rpcUrlInput" type="text" placeholder="http://localhost:8545" />
-          </label>
-          <label>
-            Vault
-            <input id="vaultInput" type="text" placeholder="0x..." />
-          </label>
-          <label>
-            Oracle
-            <input id="oracleInput" type="text" placeholder="0x..." />
-          </label>
-          <label>
-            STAPLE
-            <input id="stapleInput" type="text" placeholder="0x..." />
-          </label>
-          <label>
-            Lens (Optional)
-            <input id="lensInput" type="text" placeholder="0x..." />
-          </label>
-          <label>
-            History Blocks
-            <input id="historyBlocksInput" type="number" min="200" step="100" value="25000" />
-          </label>
-        </div>
-      </section>
-
-      <section class="panel metrics">
-        <div class="panel-head">
-          <h2>Protocol Health</h2>
-          <p id="networkMeta" class="muted">연결 대기 중</p>
-        </div>
-        <div id="metricCards" class="metric-cards"></div>
-      </section>
-
-      <section class="panel alerts">
-        <div class="panel-head">
-          <h2>Risk Alerts</h2>
-          <p class="muted">운영자가 즉시 대응해야 할 상태</p>
-        </div>
-        <div id="alertsContainer"></div>
-      </section>
-
-      <section class="panel assets">
-        <div class="panel-head">
-          <h2>Asset Allocation Matrix</h2>
-          <p class="muted">Idle cash, protocol exposure, primary routing</p>
-        </div>
-        <div id="assetTableContainer"></div>
-      </section>
-
-      <section class="panel protocols">
-        <div class="panel-head">
-          <h2>Protocol Registry</h2>
-          <p class="muted">Adapter 상태/권한/총 잔고</p>
-        </div>
-        <div id="protocolCards"></div>
-      </section>
-
-      <section class="panel oracles">
-        <div class="panel-head">
-          <h2>Oracle Integrity</h2>
-          <p class="muted">Chainlink + TWAP fallback 구성 검증</p>
-        </div>
-        <div id="oracleCards"></div>
-      </section>
-
-      <section class="panel actions">
-        <div class="panel-head">
-          <h2>Action Center</h2>
-          <p class="muted">Vault Admin / Keeper 동작 실행</p>
-        </div>
-
-        <div class="action-grid">
-          <form id="pauseForm" class="action-card">
-            <h3>Pause / Unpause Protocol</h3>
-            <label>
-              Protocol
-              <select id="pauseProtocolSelect"></select>
-            </label>
-            <label>
-              Target State
-              <select id="pauseTargetSelect">
-                <option value="true">Pause</option>
-                <option value="false">Unpause</option>
-              </select>
-            </label>
-            <button type="submit" class="btn btn-solid">실행</button>
-          </form>
-
-          <form id="primaryForm" class="action-card">
-            <h3>Set Primary Protocol</h3>
-            <label>
-              Asset
-              <select id="primaryAssetSelect"></select>
-            </label>
-            <label>
-              Protocol
-              <select id="primaryProtocolSelect"></select>
-            </label>
-            <button type="submit" class="btn btn-solid">설정</button>
-          </form>
-
-          <form id="rebalanceForm" class="action-card">
-            <h3>Rebalance Position</h3>
-            <label>
-              Asset
-              <select id="rebalanceAssetSelect"></select>
-            </label>
-            <label>
-              From Protocol
-              <select id="rebalanceFromSelect"></select>
-            </label>
-            <label>
-              To Protocol
-              <select id="rebalanceToSelect"></select>
-            </label>
-            <label>
-              Amount (raw unit)
-              <input id="rebalanceAmountInput" type="text" placeholder="1000000" />
-            </label>
-            <button type="submit" class="btn btn-solid">리밸런스</button>
-          </form>
-
-          <form id="harvestForm" class="action-card">
-            <h3>Harvest Yield</h3>
-            <label>
-              Protocol
-              <select id="harvestProtocolSelect"></select>
-            </label>
-            <label>
-              Asset
-              <select id="harvestAssetSelect"></select>
-            </label>
-            <button type="submit" class="btn btn-solid">Harvest</button>
-          </form>
-
-          <form id="reinvestForm" class="action-card">
-            <h3>Reinvest Idle Cash</h3>
-            <label>
-              Asset
-              <select id="reinvestAssetSelect"></select>
-            </label>
-            <button type="submit" class="btn btn-solid">Reinvest</button>
-          </form>
-
-          <form id="emergencyForm" class="action-card danger">
-            <h3>Emergency Withdraw</h3>
-            <label>
-              Protocol
-              <select id="emergencyProtocolSelect"></select>
-            </label>
-            <label>
-              Asset
-              <select id="emergencyAssetSelect"></select>
-            </label>
-            <button type="submit" class="btn btn-danger">긴급 회수</button>
-          </form>
-
-          <form id="swapForm" class="action-card">
-            <h3>Swap Assets Direct</h3>
-            <label>
-              Token In
-              <select id="swapInSelect"></select>
-            </label>
-            <label>
-              Token Out
-              <select id="swapOutSelect"></select>
-            </label>
-            <label>
-              Amount In (raw unit)
-              <input id="swapAmountInput" type="text" placeholder="1000000" />
-            </label>
-            <label>
-              Min Amount Out
-              <input id="swapMinOutInput" type="text" placeholder="990000" />
-            </label>
-            <label>
-              Fee (100/500/3000/10000)
-              <input id="swapFeeInput" type="number" value="100" />
-            </label>
-            <button type="submit" class="btn btn-solid">Swap 실행</button>
-          </form>
-
-          <form id="compoundPermissionForm" class="action-card">
-            <h3>Compound Permission</h3>
-            <label>
-              Asset
-              <select id="compoundAssetSelect"></select>
-            </label>
-            <label>
-              Allowed
-              <select id="compoundAllowedSelect">
-                <option value="true">Grant</option>
-                <option value="false">Revoke</option>
-              </select>
-            </label>
-            <button type="submit" class="btn btn-solid">적용</button>
-          </form>
-        </div>
-      </section>
-
-      <section class="panel events">
-        <div class="panel-head">
-          <h2>Live Operations Feed</h2>
-          <p class="muted">Vault 이벤트 기반 활동 로그</p>
-        </div>
-        <div id="eventsContainer"></div>
-      </section>
-
-      <section class="panel txlog">
-        <div class="panel-head">
-          <h2>Execution Log</h2>
-          <button id="clearLogButton" class="btn btn-soft">비우기</button>
-        </div>
-        <pre id="txLogOutput"></pre>
-      </section>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+    <div id="root"></div>
   </body>
 </html>
