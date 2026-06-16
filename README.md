@@ -8,14 +8,15 @@ The React source of the service app lives in the private repository:
 
 The deployed static files are copied into `site/` and served from:
 
-- https://2square-korea-univ.github.io/staple-demo-onboarding/
+- https://staple.bond/
 
 ## Current Build
 
 - Source app: `staple-app`
-- Build command: `npx vite build --base /staple-demo-onboarding/`
+- Build command: `npx vite build --base /`
 - Output copied from: `dist/public`
 - SPA fallback: `site/404.html`
+- Custom domain: `staple.bond`
 - Demo chain default: `STAPLE Public Demo`, chain ID `5745438`
 
 On-chain reads require a reachable demo RPC. The app loads

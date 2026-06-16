@@ -6,10 +6,10 @@
 ## 릴리스 절차
 
 1. `/Users/shlee/app/projects/staple-app`에서 비공개 앱을 빌드합니다.
-2. GitHub Pages base path를 사용합니다.
+2. 커스텀 도메인 루트 base path를 사용합니다.
 
    ```bash
-   npx vite build --base /staple-demo-onboarding/
+   npx vite build --base /
    cp dist/public/index.html dist/public/404.html
    ```
 
@@ -18,6 +18,21 @@
    갱신합니다.
 5. `main`에 커밋하고 푸시합니다.
 6. GitHub Actions가 `site/`를 Pages에 배포합니다.
+
+## 커스텀 도메인
+
+공개 데모는 `https://staple.bond/`를 사용합니다.
+
+Porkbun DNS에 필요한 레코드:
+
+- `A` `@` `185.199.108.153`
+- `A` `@` `185.199.109.153`
+- `A` `@` `185.199.110.153`
+- `A` `@` `185.199.111.153`
+- `CNAME` `www` `2square-korea-univ.github.io`
+
+DNS 반영 후 `2square-korea-univ/staple-demo-onboarding`의 GitHub Pages
+설정에서 `Enforce HTTPS`를 켭니다.
 
 ## 런타임 설정
 

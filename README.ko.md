@@ -8,14 +8,15 @@
 
 배포되는 정적 파일은 `site/`에 복사되며 아래 주소에서 서비스됩니다.
 
-- https://2square-korea-univ.github.io/staple-demo-onboarding/
+- https://staple.bond/
 
 ## 현재 빌드
 
 - 소스 앱: `staple-app`
-- 빌드 명령: `npx vite build --base /staple-demo-onboarding/`
+- 빌드 명령: `npx vite build --base /`
 - 복사 원본: `dist/public`
 - SPA fallback: `site/404.html`
+- 커스텀 도메인: `staple.bond`
 - 데모 체인 기본값: `STAPLE Public Demo`, chain ID `5745438`
 
 온체인 조회에는 접근 가능한 데모 RPC가 필요합니다. 앱은 React 번들보다 먼저

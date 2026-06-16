@@ -6,10 +6,10 @@ private keys, RPC secrets, or unredacted environment files into it.
 ## Release Steps
 
 1. Build the private app from `/Users/shlee/app/projects/staple-app`.
-2. Use the GitHub Pages base path:
+2. Use the custom-domain root base path:
 
    ```bash
-   npx vite build --base /staple-demo-onboarding/
+   npx vite build --base /
    cp dist/public/index.html dist/public/404.html
    ```
 
@@ -18,6 +18,21 @@ private keys, RPC secrets, or unredacted environment files into it.
    contract addresses.
 5. Commit and push to `main`.
 6. GitHub Actions deploys `site/` to Pages.
+
+## Custom Domain
+
+The public demo uses `https://staple.bond/`.
+
+Required DNS records at Porkbun:
+
+- `A` `@` `185.199.108.153`
+- `A` `@` `185.199.109.153`
+- `A` `@` `185.199.110.153`
+- `A` `@` `185.199.111.153`
+- `CNAME` `www` `2square-korea-univ.github.io`
+
+After DNS propagation, enable `Enforce HTTPS` in the GitHub Pages settings for
+`2square-korea-univ/staple-demo-onboarding`.
 
 ## Runtime Configuration
 
