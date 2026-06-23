@@ -2,10 +2,11 @@ window.STAPLE_DEMO_CONFIG = {
   demoRpcUrl: "https://rpc.nobaprotocol.com",
   faucetApiUrl: "https://faucet.nobaprotocol.com",
   demoChainId: 5745438,
+  demoStartBlock: 25382487,
   demoNetworkName: "STAPLE Public Demo",
   demoSymbol: "ETH",
   demoExplorerUrl: "",
-  walletConnectProjectId: "YOUR_PROJECT_ID",
+  walletConnectProjectId: "270637c9-b81a-4615-ac87-60b8a6b232d2",
   contracts: {
     STAPLE_ADDRESS: "0x1BaEE12f5f1e898d8EEF30503fCB4Cb0b98E72b6",
     ORACLE: "0xeb61B2307B5846F9E0A72EECE51d9CBA88256683",
